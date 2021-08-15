@@ -1,0 +1,37 @@
+version: '3.1'
+
+
+services:
+
+  app:
+    image: wordpress
+    restart: unless-stopped
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: $DB_USER
+      WORDPRESS_DB_PASSWORD: $DB_PASSWORD
+      WORDPRESS_DB_NAME: $DB_NAME
+      ACCESS_KEY: $AWS_ACCESS_KEY
+      SEC RET_KEY: $AWS_SECRET_KEY
+    ports:
+      - $WEB_SOCK:80
+    volumes:
+      - wordpress:/var/www/html
+      - ./wp-improved-mail:/var/www/html/wp-content/plugins/wp-improved-mail
+
+  db:
+    image: mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --character-set-server=$DB_CHARSET --collation-server=$DB_COLLATE
+
+volumes:
+  mysql_data:
+    name: ${VOLUME_MYSQL_LIB}
+    external: true
+  wordpress:
+    name: ${VOLUME_WORDPRESS}
+    external: true
