@@ -8,8 +8,8 @@ services:
     restart: unless-stopped
     environment:
       WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: $DB_USER
-      WORDPRESS_DB_PASSWORD: $DB_PASSWORD
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: $MYSQL_ROOT_PASSWORD
       WORDPRESS_DB_NAME: $DB_NAME
       ACCESS_KEY: $AWS_ACCESS_KEY
       SEC RET_KEY: $AWS_SECRET_KEY
