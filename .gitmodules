@@ -1,0 +1,3 @@
+[submodule "wp-improved-mail"]
+	path = wp-improved-mail
+	url = https://github.com/binhsonnguyen/wp-improved-mail

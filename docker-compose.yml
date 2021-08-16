@@ -17,6 +17,7 @@ services:
       - $WEB_SOCK:80
     volumes:
       - wordpress:/var/www/html
+      - ./wp-improved-mail:/var/www/html/wp-content/plugins/wp-improved-mail
 
   db:
     image: mariadb
