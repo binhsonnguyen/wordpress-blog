@@ -13,8 +13,9 @@ services:
       WORDPRESS_DB_NAME: $DB_NAME
       ACCESS_KEY: $AWS_ACCESS_KEY
       SEC RET_KEY: $AWS_SECRET_KEY
-    ports:
-      - $WEB_SOCK:80
+    networks:
+      - default
+      - proxy
     volumes:
       - wordpress:/var/www/html
 
@@ -34,3 +35,8 @@ volumes:
   wordpress:
     name: ${VOLUME_WORDPRESS}
     external: true
+
+networks:
+  proxy:
+    external: true
+    name: ${NETWORK}
